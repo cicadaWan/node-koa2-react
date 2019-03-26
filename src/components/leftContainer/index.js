@@ -11,35 +11,36 @@ const Container = Inner => {
         ...this.props
       };
       console.log(this.props,'this.props是')
+      const {location: {pathname}} = this.props;
+      const flag = localStorage.getItem('userName');
       return (
         <div>
           <Header />
           <Row>
-            <Col span={4}>
-              <Menu>
-                <Menu.Item>
-                  <Link to={'/register'}>注册</Link>
+            {
+              flag ?
+              <Col span={4}>
+              <Menu defaultSelectedKeys={[pathname]}>
+                <Menu.Item key="/people">
+                  <Link to={'/people'}>人群</Link>
                 </Menu.Item>
-                <Menu.Item>
-                  <Link to={'/login'}>登录</Link>
-                </Menu.Item>
-                <Menu.Item>
-                  <Link to={'/home'}>首页</Link>
-                </Menu.Item>
-                <Menu.Item>
+                <Menu.Item key="/company">
                   <Link to={'/company'}>公司主页标签</Link>
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item key="/management">
                   <Link to={'/management'}>管理列表</Link>
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item key="/hook">
                   <Link to={'/hook'}>react hook</Link>
                 </Menu.Item>
               </Menu>
             </Col>
-            <Col span={20}>
+            :
+            null
+            }
+           <Col span={ flag ? 20 : 24}>
               <Inner {...props} />
-            </Col>
+           </Col>
         </Row>
         </div>
       );

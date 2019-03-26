@@ -79,8 +79,10 @@ class Login extends React.Component{
           console.log(data)
           if (data.flag === 1) {
             message.success(data.message);
+            localStorage.setItem('userName', value.name);
             setTimeout(() => {
-              this.context.router.push('/home');
+              console.log(this, 'this是')
+              this.context.router.push('/company');
             }, 1000);
           } else {
             message.error(data.message);

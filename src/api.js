@@ -1,4 +1,5 @@
 import axios from 'axios';
+axios.defaults.withCredentials = true; // 默认为false，不携带cookie信息
 
 export function getList(data) {
   // todo: 初始调取全部数据，不匹配；
@@ -22,4 +23,8 @@ export function register(data) {
 }
 export function login(data) {
   return axios.get(`http://localhost:3001/user/register?name=${data.name}&pass=${data.password}`, data)
+}
+export function logout(data) {
+  console.log(data, '打印')
+  return axios.delete(`http://localhost:3001/user/register/${data}`, data)
 }
